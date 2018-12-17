@@ -16,7 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class DefaultLayoutInterceptor implements HandlerInterceptor {
 
 	@Override
-	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView mv) throws Exception{
+	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView mv) throws Exception {
 		if (request == null || response == null || mv == null) {
 			return;
 		}

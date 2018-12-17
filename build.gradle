@@ -16,8 +16,18 @@ apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 
 group = 'io.github.chanhyeong'
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
+
+allprojects {
+	sourceCompatibility = 1.8
+	targetCompatibility = 1.8
+
+	ext {
+		// 주어진 profile 이 없으면 local 을 기본으로 설정
+		if (!project.hasProperty('profile') || !profile) {
+			profile = "local"
+		}
+	}
+}
 
 repositories {
 	mavenCentral()
@@ -31,4 +41,15 @@ dependencies {
 	compileOnly('org.projectlombok:lombok')
 	testImplementation('org.springframework.boot:spring-boot-starter-test')
 	testImplementation('io.projectreactor:reactor-test')
+}
+
+sourceSets {
+	main {
+		java {
+			srcDirs 'src/main/java'
+		}
+		resources {
+			srcDir "src/main/resources"
+		}
+	}
 }
